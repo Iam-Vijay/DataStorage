@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
+import com.yariksoffice.lingver.Lingver
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
@@ -18,14 +19,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Lingver.getInstance().setLocale(this, "ta")
 
         binding.button.setOnClickListener {
+            recreate()
             lifecycleScope.launch(Dispatchers.IO) {
                 sessionManager.savetodataStore(binding.name.text.toString(),binding.age.text.toString().toInt(),true)
             }
         }
         sessionManager.exampleCounterFlow.asLiveData().observe(this,{
-            binding.textView.setText(it)
+            binding.textView.text = it
         })
+
     }
 }
