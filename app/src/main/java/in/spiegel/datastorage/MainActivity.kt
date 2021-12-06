@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         Lingver.getInstance().setLocale(this, "ta")
 
         binding.button.setOnClickListener {
-            recreate()
             lifecycleScope.launch(Dispatchers.IO) {
                 sessionManager.savetodataStore(binding.name.text.toString(),binding.age.text.toString().toInt(),true)
             }
