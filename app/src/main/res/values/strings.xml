@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DataStorage</string>
+    <string name="app_name" translatable="false">DataStorage</string>
     <string name="name">Name</string>
     <string name="age">Age</string>
 </resources>
